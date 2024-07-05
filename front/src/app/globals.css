@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-primary {
+  @apply px-4 py-2 text-black uppercase bg-gradient-to-r from-purple-600 via-blue-500 to-green-600  font-bold rounded-lg hover:scale-105;
+}
+
+.btn-secondary {
+  @apply px-4 py-2 text-black uppercase bg-green-500 border-2 border-transparent font-bold rounded-lg hover:bg-green-400;
+}
+
+.title {
+  @apply bg-gradient-to-r from-purple-600 via-blue-500 to-green-600 bg-clip-text font-extrabold text-transparent;
+}
+
+.formDiv {
+  @apply mb-5;
+}
+
+.formInput {
+  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+}
+
+.formLabel {
+  @apply block mb-0 text-lg font-medium text-white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
