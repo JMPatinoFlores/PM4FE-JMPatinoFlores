@@ -15,13 +15,14 @@ export const ProductCard = ({ product }: { product: IProduct }) => {
       <div className="max-w-sm text-white p-4 flex flex-col items-center bg-gray-950 rounded-lg hover:scale-105">
         <div>
           <Link href={`/details/${product.id}`}>
-            <div className="h-450">
+            <div className="h-72">
               <Image
                 src={product.image}
                 alt={product.name}
-                width={250}
+                width={450}
                 height={450}
-                className="object-contain h-72 w-72"
+                className="object-contain h-72"
+                priority={true}
               />
             </div>
 

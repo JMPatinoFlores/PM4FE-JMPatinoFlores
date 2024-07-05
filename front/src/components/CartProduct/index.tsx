@@ -5,45 +5,49 @@ import Link from "next/link";
 export const CartProduct = ({ product, remove }: IProductCartProps) => {
   return (
     <div>
-      <div>
-        <table className="table-auto w-full">
-          <tbody>
-            <tr className=" text-white">
+      <table className="table-auto w-full">
+        <tbody>
+          <tr className=" text-white flex flex-col md:table-row">
+            <td className="px-4 py-2 w-full md:w-1/6 text-left md:text-left">
+              <button onClick={remove} className="ml-0 md:ml-4">
+                <Image
+                  src="/remove.png"
+                  alt="remove"
+                  width={24}
+                  height={24}
+                  className="hover:opacity-75 transition-opacity"
+                />
+              </button>
+            </td>
+            <td className="px-4 py-2 w-full md:w-2/6 text-center md:text-left">
               <Link
                 href={`/details/${product.id}`}
-                className="flex items-center"
+                className="flex flex-col md:flex-row items-center w-full md:w-auto"
               >
-                <td className="px-4 py-2 w-2/6">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    width={200}
-                    height={200}
-                    className="object-contain h-36 w-36"
-                  />
-                </td>
-                <td className="px-4 py-2 w-3/6">
-                  <h3 className="text-xl font-semibold">{product.name}</h3>
-                </td>
-                <td className="px-4 py-2 w-1/3">
-                  <p className="text-lg text-right">${product.price}</p>
-                </td>
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  width={200}
+                  height={200}
+                  className="object-contain h-36 w-36 mx-auto md:mx-0"
+                  priority={true}
+                />
               </Link>
-              <td className="px-4 py-2 w-1/6">
-                <button onClick={remove} className="ml-4">
-                  <Image
-                    src="/remove.png"
-                    alt="remove"
-                    width={24}
-                    height={24}
-                    className="hover:opacity-75 transition-opacity"
-                  />
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+            </td>
+            <td className="px-4 py-2 w-full md:w-3/6 text-center md:text-left">
+              <Link
+                href={`/details/${product.id}`}
+                className="flex flex-col md:flex-row items-center w-full md:w-auto"
+              >
+                <h3 className="text-xl font-semibold">{product.name}</h3>
+              </Link>
+            </td>
+            <td className="px-4 py-2 w-full md:w-1/3 text-center md:text-right">
+              <p className="text-lg">${product.price}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };

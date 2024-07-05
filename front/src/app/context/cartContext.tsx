@@ -2,7 +2,8 @@
 
 import { ICartContextType, IProduct } from "@/interfaces";
 import { fetchProductDetail } from "@/lib/server/fetchProducts";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext, useMemo } from "react";
+import { UserContext } from "@/app/context/userContext";
 
 const addProduct = async (
   cartProducts: IProduct[],
@@ -11,15 +12,27 @@ const addProduct = async (
   const productAdded = cartProducts.find(
     (product: IProduct) => product.id === productId
   );
-  if (productAdded) {
-    return cartProducts;
-  }
+  if (productAdded) return cartProducts;
   const response = await fetchProductDetail(productId.toString());
   return [...cartProducts, response];
 };
 
 const removeProduct = (cartProducts: IProduct[], productId: number) => {
   return cartProducts.filter((product) => product.id !== productId);
+};
+
+const getStoredCart = (key: string): IProduct[] => {
+  if (typeof window !== "undefined") {
+    const storedCart = localStorage.getItem(key);
+    return storedCart ? JSON.parse(storedCart) : [];
+  }
+  return [];
+};
+
+const storeCart = (key: string, cartProducts: IProduct[]) => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem(key, JSON.stringify(cartProducts));
+  }
 };
 
 export const CartContext = createContext<ICartContextType>({
@@ -33,15 +46,19 @@ export const CartContext = createContext<ICartContextType>({
 const checkout = async (cartProducts: IProduct[]) => {
   try {
     const products = cartProducts.map((product) => product.id);
-    const token = localStorage.getItem("token");
-    const response = await fetch("http://localhost:4000/orders", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `${token}`,
-      },
-      body: JSON.stringify({ products }),
-    });
+    const token =
+      typeof window !== "undefined" && localStorage.getItem("token");
+    const response = await fetch(
+      "https://pm4fe-jmpatinoflores.onrender.com/orders",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${token}`,
+        },
+        body: JSON.stringify({ products }),
+      }
+    );
     if (response.ok) {
       console.log("Orden creada");
     } else {
@@ -53,13 +70,22 @@ const checkout = async (cartProducts: IProduct[]) => {
 };
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
-  const [cartProducts, setCartProducts] = useState<IProduct[]>([]);
+  const { user } = useContext(UserContext);
+  const cartKey = useMemo(
+    () => (user ? `cartProducts_${user.id}` : "cartProducts"),
+    [user]
+  );
+
+  const [cartProducts, setCartProducts] = useState<IProduct[]>(() =>
+    getStoredCart(cartKey)
+  );
   const [total, setTotal] = useState(0);
 
   const addToCart = async (productId: number) => {
     const newCartProducts = await addProduct(cartProducts, productId);
     setCartProducts(newCartProducts);
     calculateTotal(newCartProducts);
+    storeCart(cartKey, newCartProducts);
     console.log("Producto añadido:", newCartProducts);
   };
 
@@ -67,6 +93,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     const newCartProducts = removeProduct(cartProducts, productId);
     setCartProducts(newCartProducts);
     calculateTotal(newCartProducts);
+    storeCart(cartKey, newCartProducts);
     console.log("Producto removido:", newCartProducts);
   };
 
@@ -81,12 +108,18 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const procedToCheckout = () => {
     checkout(cartProducts);
     setCartProducts([]);
+    storeCart(cartKey, []);
     alert("Gracias por tu compra");
   };
 
   useEffect(() => {
     calculateTotal(cartProducts);
   }, [cartProducts]);
+
+  useEffect(() => {
+    const storedCart = getStoredCart(cartKey);
+    setCartProducts(storedCart);
+  }, [cartKey]);
 
   return (
     <CartContext.Provider

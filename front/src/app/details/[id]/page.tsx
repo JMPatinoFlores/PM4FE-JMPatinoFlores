@@ -19,19 +19,19 @@ const ProductDetail = async ({ params }: IParams) => {
   }
 
   return (
-    <div className="text-white flex flex-col md:flex-row p-4 m-5 max-h-100 bg-gray-950 rounded-lg items-center">
-      <div className="max-w-5xl w-full p-4 m-5 bg-gray-950 rounded-lg items-center">
+    <div className="text-white flex flex-col m-8 max-h-fit bg-gray-950 rounded-lg items-center max-w-5xl md:flex-row ">
+      <div className=" p-2 m-2 bg-gray-950 rounded-lg items-center">
         <div className="text-white flex flex-col md:flex-row p-4 items-center">
-          <div className="flex-1 flex justify-center h-96">
+          <div className="flex-1 flex justify-center">
             <Image
               src={product.image}
               alt={product.name || "Product image"}
-              width={450}
-              height={450}
-              className="object-contain h-full"
+              width={500}
+              height={500}
+              className="object-contain"
             />
           </div>
-          <div className="flex-1 p-4 m-2 flex flex-col justify-between">
+          <div className="flex-1 flex flex-col justify-between">
             <div>
               <h2 className="title text-4xl mb-4">{product.name}</h2>
               <p className="text-lg">{product.description}</p>
@@ -42,7 +42,7 @@ const ProductDetail = async ({ params }: IParams) => {
               </p>
             </div>
             <div className="flex items-center space-x-4 justify-end">
-              <p className="text-center font-semibold text-green-400 text-3xl my-4">
+              <p className="text-center font-bold bg-gradient-to-r from-purple-500 to-green-500 bg-clip-text text-transparent text-4xl my-4">
                 ${product.price}
               </p>
               <div>

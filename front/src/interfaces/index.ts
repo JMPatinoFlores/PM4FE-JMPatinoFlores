@@ -12,10 +12,6 @@ export interface IProduct {
   categoryId: number;
 }
 
-export interface IProductProps {
-  product: IProduct;
-}
-
 export interface IProductCartProps {
   product: IProduct;
   remove?: () => void;

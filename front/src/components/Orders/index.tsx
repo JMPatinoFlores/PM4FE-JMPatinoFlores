@@ -22,12 +22,14 @@ const Orders = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center p-4 w-full">
       {isLogged ? (
-        <div className="w-full">
-          <h2 className="text-2xl font-semibold mb-4">Mis Pedidos</h2>
+        <div className="w-full max-w-screen-lg">
+          <h2 className="text-2xl font-semibold mb-4 text-center md:text-left">
+            Mis Pedidos
+          </h2>
           {orders.length > 0 ? (
-            <table className="w-full text-white table-auto md:table-fixed">
+            <table className="w-full text-white table-auto">
               <thead>
                 <tr>
                   <th className="border-b-2 border-purple-800 px-4 py-2 text-left">
@@ -62,11 +64,13 @@ const Orders = () => {
               </tbody>
             </table>
           ) : (
-            <p>No tienes pedidos aún.</p>
+            <p className="text-center md:text-left">No tienes pedidos aún.</p>
           )}
         </div>
       ) : (
-        <p>Debes iniciar sesión para poder ver tus pedidos.</p>
+        <p className="text-center md:text-left">
+          Debes iniciar sesión para poder ver tus pedidos.
+        </p>
       )}
     </div>
   );

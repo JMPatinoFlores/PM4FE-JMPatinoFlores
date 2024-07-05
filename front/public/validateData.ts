@@ -1,6 +1,5 @@
 import { IRegisterValues } from "@/interfaces";
 
-// validations.js
 export const validateRegisterForm = (values: IRegisterValues) => {
   const errors: Partial<IRegisterValues> = {};
 

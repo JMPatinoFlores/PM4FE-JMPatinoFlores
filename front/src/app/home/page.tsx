@@ -1,9 +1,9 @@
 import React from "react";
-import { Products } from "@/components/ProductsList/page";
+import { Products } from "@/components/ProductsList";
 
 const Home: React.FC = () => {
   return (
-    <div>
+    <div className="mx-auto">
       <Products />;
     </div>
   );

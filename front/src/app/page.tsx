@@ -11,10 +11,11 @@ export default function Landing() {
         <Image
           src={appleImage}
           alt="Apple logo"
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: "cover" }}
           quality={100}
           className="opacity-20"
+          priority
         />
       </div>
       <div className="relative z-10 text-center text-white">

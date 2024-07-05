@@ -4,13 +4,13 @@ export default function Cart() {
   const products = [];
 
   return (
-    <div className="text-white w-full max-w-6xl mx-auto p-4 flex flex-col">
-      <div className="mb-6">
-        <h1 className="title font-semibold text-4xl mb-4">
+    <div className="text-white min-h-screen p-4 flex flex-col justify-center items-center w-full">
+      <div className="w-full max-w-screen-lg">
+        <h1 className="title text-4xl font-bold mb-6 text-center">
           Mi carrito de compras.
         </h1>
       </div>
-      <div>
+      <div className="w-full max-w-screen-lg">
         <CartComponent />
       </div>
     </div>

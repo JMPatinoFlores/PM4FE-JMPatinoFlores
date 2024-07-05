@@ -1,10 +1,13 @@
 export const getUserOrders = async (token: string) => {
-  const response = await fetch("http://localhost:4000/users/orders", {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `${token}`,
-    },
-  });
+  const response = await fetch(
+    "https://pm4fe-jmpatinoflores.onrender.com/users/orders",
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+    }
+  );
   const data = await response.json();
   return data;
 };

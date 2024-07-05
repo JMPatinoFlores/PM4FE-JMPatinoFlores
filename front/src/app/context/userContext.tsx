@@ -9,7 +9,7 @@ import {
 } from "@/interfaces";
 import { getUserOrders } from "@/lib/server/fetchOrders";
 import { postLogin, postRegister } from "@/lib/server/fetchUsers";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 
 export const UserContext = createContext<IUserContextType>({
   user: null,
@@ -49,8 +49,10 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       if (data.user && data.token) {
         setUser(data.user);
         setIsLogged(true);
-        localStorage.setItem("user", JSON.stringify(data.user));
-        localStorage.setItem("token", data.token);
+        typeof window !== "undefined" &&
+          localStorage.setItem("user", JSON.stringify(data.user));
+        typeof window !== "undefined" &&
+          localStorage.setItem("token", data.token);
         return true;
       }
       return false;
@@ -60,9 +62,10 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const getOrders = async () => {
+  const getOrders = useCallback(async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token =
+        typeof window !== "undefined" && localStorage.getItem("token");
       if (token) {
         const data = await getUserOrders(token);
         setOrders(data);
@@ -71,20 +74,21 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       console.log(error);
       return [];
     }
-  };
+  }, []);
 
   const logOut = () => {
     const confirm = window.confirm("¿Estás seguro de cerrar sesión?");
     if (confirm) {
       setUser(null);
       setIsLogged(false);
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
+      typeof window !== "undefined" && localStorage.removeItem("user");
+      typeof window !== "undefined" && localStorage.removeItem("token");
     }
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token =
+      typeof window !== "undefined" && localStorage.getItem("token");
     if (token) {
       setIsLogged(true);
     } else {
@@ -93,7 +97,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
+    const user = typeof window !== "undefined" && localStorage.getItem("user");
     if (user) {
       setUser(JSON.parse(user));
     } else {

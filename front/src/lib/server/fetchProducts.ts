@@ -1,6 +1,10 @@
-export const fetchProducts = async () => {
+import { IProduct } from "@/interfaces";
+
+export const fetchProducts = async (): Promise<IProduct[]> => {
   try {
-    const response = await fetch("http://localhost:4000/products");
+    const response = await fetch(
+      "https://pm4fe-jmpatinoflores.onrender.com/products"
+    );
     const product = await response.json();
     return product;
   } catch (error) {
@@ -11,9 +15,12 @@ export const fetchProducts = async () => {
 
 export const fetchProductDetail = async (id: string) => {
   try {
-    const response = await fetch(`http://localhost:4000/products/${id}`, {
-      cache: "no-cache",
-    });
+    const response = await fetch(
+      `https://pm4fe-jmpatinoflores.onrender.com/products/${id}`,
+      {
+        cache: "no-cache",
+      }
+    );
     const product = await response.json();
     console.log(product);
     return product;

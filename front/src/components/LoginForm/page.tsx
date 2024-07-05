@@ -10,7 +10,7 @@ import Link from "next/link";
 import { UserContext } from "@/app/context/userContext";
 import { useRouter } from "next/navigation";
 
-export default function LoginUser() {
+function LoginUser() {
   const { signIn } = useContext(UserContext);
   const router = useRouter();
 
@@ -77,6 +77,7 @@ export default function LoginUser() {
                   name="password"
                   placeholder="********"
                   className="formInput"
+                  autoComplete="current-password"
                 />
                 <ErrorMessage
                   name="password"
@@ -109,3 +110,5 @@ export default function LoginUser() {
     </div>
   );
 }
+
+export default LoginUser;
