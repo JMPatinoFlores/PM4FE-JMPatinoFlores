@@ -24,7 +24,7 @@ export const CartComponent = () => {
   }, [isLogged]);
 
   return (
-    <div className="flex justify-center p-4 w-full">
+    <div className="max-w-screen-lg flex justify-center p-4 w-full">
       <div className="text-white p-4 w-full max-w-screen-lg">
         {loading ? (
           <div className="flex justify-center items-center">
@@ -44,17 +44,17 @@ export const CartComponent = () => {
                 </div>
               ))
             ) : (
-              <div className="p-8 rounded-lg shadow-lg w-full">
+              <div className="p-8 rounded-lg shadow-lg w-full text-center">
                 <div>
-                  <p className="text-center text-2xl font-bold mb-6">
+                  <p className="text-center text-2xl font-bold my-10">
                     No tienes productos en tu carrito.
                   </p>
                 </div>
                 <Link
                   href="/home"
-                  className="text-center text-2xl font-bold mb-6"
+                  className="text-center text-2xl font-bold my-6 flex justify-center"
                 >
-                  <button className="btn-primary text-md w-full md:w-auto">
+                  <button className="btn-primary text-md md:mt-4 md:w-auto">
                     Agregar productos
                   </button>
                 </Link>
