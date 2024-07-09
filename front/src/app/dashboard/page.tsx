@@ -3,7 +3,9 @@ import UserDashboard from "@/components/UserDashboard";
 function Dashboard() {
   return (
     <div>
-      <UserDashboard />
+      <div>
+        <UserDashboard />
+      </div>
     </div>
   );
 }

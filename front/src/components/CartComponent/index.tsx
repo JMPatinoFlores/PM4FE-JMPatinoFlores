@@ -5,6 +5,7 @@ import { useContext, useState, useEffect } from "react";
 import { UserContext } from "@/app/context/userContext";
 import { CartProduct } from "../CartProduct";
 import Link from "next/link";
+import Image from "next/image";
 
 export const CartComponent = () => {
   const { cartProducts, removeFromCart, total, procedToCheckout } =
@@ -28,7 +29,7 @@ export const CartComponent = () => {
       <div className="text-white p-4 w-full max-w-screen-lg">
         {loading ? (
           <div className="flex justify-center items-center">
-            <div className="relative w-24 h-24 animate-spin rounded-full bg-gradient-to-r from-purple-400 via-blue-500 to-red-400 ">
+            <div className="relative w-24 h-24 animate-spin rounded-full bg-gradient-to-r from-purple-600 via-blue-500 to-green-400 ">
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-black rounded-full border-2 border-white"></div>
             </div>
           </div>
@@ -46,6 +47,13 @@ export const CartComponent = () => {
             ) : (
               <div className="p-8 rounded-lg shadow-lg w-full text-center">
                 <div>
+                  <Image
+                    src="/bag.png"
+                    alt="Cart"
+                    width={200}
+                    height={200}
+                    className="mx-auto opacity-50"
+                  />
                   <p className="text-center text-2xl font-bold my-10">
                     No tienes productos en tu carrito.
                   </p>
@@ -64,7 +72,7 @@ export const CartComponent = () => {
               <div className="flex flex-col w-full">
                 <div className="flex flex-col md:flex-row justify-between items-center my-4 py-2 w-full">
                   <div>
-                    <h3 className="font-semibold text-lg">Total: ${total}</h3>
+                    <h3 className="font-semibold text-xl">Total: ${total}</h3>
                   </div>
                   <button
                     onClick={procedToCheckout}

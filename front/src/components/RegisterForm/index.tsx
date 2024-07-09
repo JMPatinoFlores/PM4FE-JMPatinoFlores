@@ -41,19 +41,21 @@ function RegisterUser() {
   };
 
   return (
-    <div className="text-white flex flex-col md:flex-row p-4 m-5 max-h-screen w-full">
+    <div className="text-white flex flex-col md:flex-row p-4 m-5 max-h-screen w-full ">
       <div className="flex-1 justify-center hidden md:flex">
         <Image
           src={laptopImagen}
           alt="Laptop"
           width={500}
           height={500}
-          className="mx-5 object-contain h-full"
+          className="mx-5 object-contain md:flex rounded-l-lg"
         />
       </div>
 
-      <div className="flex-1 p-4 m-2 flex flex-col justify-center items-center">
-        <h1 className="title text-4xl mb-4 text-center">Regístrate</h1>
+      <div className="flex-1 p-4 m-2 flex flex-col justify-center items-center rounded-r-lg">
+        <h1 className="title text-4xl mb-4 text-center font-bold">
+          Regístrate
+        </h1>
         <Formik
           initialValues={initialValues}
           validate={validateRegisterForm}

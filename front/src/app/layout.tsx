@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { UserProvider } from "./context/userContext";
 import { CartProvider } from "./context/cartContext";
+import { WishProvider } from "./context/wishContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +25,13 @@ export default function RootLayout({
         <div className="min-h-screen flex flex-col">
           <UserProvider>
             <CartProvider>
-              <Navbar />
-              <main className="flex flex-grow justify-center">{children}</main>
-              <Footer />
+              <WishProvider>
+                <Navbar />
+                <main className="flex flex-grow justify-center">
+                  {children}
+                </main>
+                <Footer />
+              </WishProvider>
             </CartProvider>
           </UserProvider>
         </div>

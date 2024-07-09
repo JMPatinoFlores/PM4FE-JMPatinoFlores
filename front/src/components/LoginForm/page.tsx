@@ -48,7 +48,9 @@ function LoginUser() {
         />
       </div>
       <div className="flex-1 p-4 m-2 flex flex-col justify-center items-center rounded-r-lg">
-        <h1 className="title text-4xl mb-4 text-center">Inicia sesión</h1>
+        <h1 className="title text-4xl mb-4 text-center font-bold">
+          Inicia sesión
+        </h1>
         <Formik
           initialValues={initialValues}
           validate={validateLoginForm}

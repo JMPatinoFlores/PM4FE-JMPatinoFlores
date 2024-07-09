@@ -1,18 +1,16 @@
-import { CartComponent } from "@/components/CartComponent";
+import { WishComponent } from "@/components/WishComponent";
 import Image from "next/image";
 
-export default function Cart() {
-  const products = [];
-
+export default function Wishlist() {
   return (
     <div className="text-white min-h-screen p-4 flex flex-col justify-center items-center w-full">
       <div className="w-full max-w-screen-lg">
         <h1 className="title text-4xl font-bold text-center">
-          Mi carrito de compras.
+          Mi lista de deseos.
         </h1>
       </div>
       <div className="w-full max-w-screen-lg">
-        <CartComponent />
+        <WishComponent />
       </div>
       <div className="w-full max-w-screen-lg grid grid-cols-1 md:grid-cols-3 gap-8 text-center mt-8">
         <div className="flex flex-col items-center">

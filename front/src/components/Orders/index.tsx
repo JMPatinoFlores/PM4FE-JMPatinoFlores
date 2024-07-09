@@ -25,9 +25,6 @@ const Orders = () => {
     <div className="flex flex-col items-center p-4 w-full">
       {isLogged ? (
         <div className="w-full max-w-screen-lg">
-          <h2 className="text-2xl font-semibold mb-4 text-center md:text-left">
-            Mis Pedidos
-          </h2>
           {orders.length > 0 ? (
             <table className="w-full text-white table-auto">
               <thead>

@@ -1,14 +1,14 @@
-import { IProductCartProps } from "@/interfaces";
+import { IProductProps } from "@/interfaces";
 import Image from "next/image";
 import Link from "next/link";
 
-export const CartProduct = ({ product, remove }: IProductCartProps) => {
+export const CartProduct = ({ product, remove }: IProductProps) => {
   return (
-    <div>
-      <table className="table-auto w-full">
+    <div className="border border-white rounded-md p-4 m-4">
+      <table className="table-auto w-full ">
         <tbody>
-          <tr className=" text-white flex flex-col md:table-row">
-            <td className="px-4 py-2 w-full md:w-1/6 text-left md:text-left">
+          <tr className=" text-white flex flex-col md:table-row border-1">
+            <td className="px-4 py-2 w-full md:w-1/6 text-right md:text-left">
               <button onClick={remove} className="ml-0 md:ml-4">
                 <Image
                   src="/remove.png"

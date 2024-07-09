@@ -6,6 +6,7 @@ import Link from "next/link";
 import { IProduct } from "@/interfaces";
 import { UserContext } from "@/app/context/userContext";
 import { AddToCart } from "@/components/AddToCart";
+import { AddToWish } from "../AddToWish";
 
 export const ProductCard = ({ product }: { product: IProduct }) => {
   const { isLogged } = useContext(UserContext);
@@ -38,9 +39,14 @@ export const ProductCard = ({ product }: { product: IProduct }) => {
             <p className=" text-3xl font-bold bg-gradient-to-r from-purple-500 to-green-500 bg-clip-text text-transparent">
               ${product.price}
             </p>
-            <div className="flex space-x-2"></div>
-            <div>
-              <AddToCart id={product?.id} />
+            <div className="flex space-x-2">
+              <div>
+                <AddToWish id={product?.id} />
+              </div>
+
+              <div>
+                <AddToCart id={product?.id} />
+              </div>
             </div>
           </div>
         </div>

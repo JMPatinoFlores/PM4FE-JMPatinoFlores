@@ -12,7 +12,7 @@ export interface IProduct {
   categoryId: number;
 }
 
-export interface IProductCartProps {
+export interface IProductProps {
   product: IProduct;
   remove?: () => void;
 }
@@ -29,6 +29,12 @@ export interface ICartContextType {
   removeFromCart: (productId: number) => void;
   total: number;
   procedToCheckout: () => void;
+}
+
+export interface IWishContextType {
+  wishProducts: IProduct[];
+  addToWish: (productId: number) => Promise<void>;
+  removeFromWish: (productId: number) => void;
 }
 
 ///////////////// Users

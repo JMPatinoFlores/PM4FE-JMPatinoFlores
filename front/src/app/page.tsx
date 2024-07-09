@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Landing() {
   return (
-    <div className="relative z-20 flex items-center overflow-hidden bg-black">
+    <div className="relative z-20 flex items-center overflow-hidden bg-black w-full">
       <div className="absolute inset-0">
         <Image
           src={appleImage}
@@ -18,7 +18,7 @@ export default function Landing() {
           priority
         />
       </div>
-      <div className="relative z-10 text-center text-white">
+      <div className="relative z-10 text-center text-white mx-auto">
         <h1 className="flex flex-col text-6xl font-black leading-none uppercase font-bebas-neue sm:text-8xl title">
           Trendy
         </h1>
