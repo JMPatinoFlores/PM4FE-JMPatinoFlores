@@ -2,10 +2,12 @@
 
 import { CartContext } from "@/app/context/cartContext";
 import { UserContext } from "@/app/context/userContext";
+import { IProduct } from "@/interfaces";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
+const products: IProduct[] = [];
 const Navbar = () => {
   const { isLogged, logOut } = useContext(UserContext);
   const { cartProducts } = useContext(CartContext);
@@ -34,29 +36,29 @@ const Navbar = () => {
               <Image
                 src="/heart.png"
                 alt="Wishlist"
-                width={24}
-                height={24}
+                width={32}
+                height={32}
                 className="hover:opacity-75 transition-opacity duration-300 active:scale-95"
               />
             </Link>
-            <Link href="/cart" className="relative px-2 py-2">
+            <Link href="/cart" className="relative">
               <Image
                 src="/cart.png"
                 alt="Cart"
-                width={24}
-                height={24}
-                className="hover:opacity-75 transition-opacity duration-300 active:scale-95"
+                width={32}
+                height={32}
+                className="relative hover:opacity-75 transition-opacity duration-300 active:scale-95"
               />
               {cartProducts.length > 0 && (
-                <span className="animate-ping absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-green-400 bg-green-600"></span>
+                <span className="animate-ping absolute top-0 right-0 h-2 w-2 rounded-full ring-2 ring-green-400 bg-green-600"></span>
               )}
             </Link>
             <Link href="/dashboard" className="px-2 py-2">
               <Image
                 src="/user.png"
                 alt="Profile"
-                width={24}
-                height={24}
+                width={32}
+                height={32}
                 className="hover:opacity-75 transition-opacity duration-300 active:scale-95"
               />
             </Link>

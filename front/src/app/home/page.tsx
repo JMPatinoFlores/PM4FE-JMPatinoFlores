@@ -12,9 +12,6 @@ const Home: React.FC = () => {
           <h2 className="title text-6xl py-2">TrendyTreasures</h2>
           <p>La mejor tienda de tecnología en línea.</p>
           <p>Únete a la familia y obtén grandes beneficios.</p>
-          <Link href="/register">
-            <button className="btn-secondary flex mt-8">Registrarse</button>
-          </Link>
         </div>
         <Image
           src={"/Family_iPhone.png"}
