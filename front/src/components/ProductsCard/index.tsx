@@ -1,16 +1,10 @@
-"use client";
-
-import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { IProduct } from "@/interfaces";
-import { UserContext } from "@/app/context/userContext";
 import { AddToCart } from "@/components/AddToCart";
 import { AddToWish } from "../AddToWish";
 
 export const ProductCard = ({ product }: { product: IProduct }) => {
-  const { isLogged } = useContext(UserContext);
-
   return (
     <div>
       <div className="max-w-sm text-white p-4 flex flex-col items-center bg-gray-950 rounded-lg hover:scale-105">
