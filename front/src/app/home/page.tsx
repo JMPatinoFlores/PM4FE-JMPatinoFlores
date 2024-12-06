@@ -1,7 +1,6 @@
 import React from "react";
 import { Products } from "@/components/ProductsList";
 import Image from "next/image";
-import Link from "next/link";
 
 const Home: React.FC = () => {
   return (
