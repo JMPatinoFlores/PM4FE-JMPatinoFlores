@@ -75,12 +75,21 @@ const productsToPreLoad: IProduct[] = [
 ];
 
 export const preLoadProducts = async () => {
+  console.log("Starting to preload products...");
+
   const products = await ProductRepository.find();
-  if (!products.length)
+  console.log("Current products:", products);
+
+  if (!products.length) {
     await AppDataSource.createQueryBuilder()
       .insert()
       .into(Product)
       .values(productsToPreLoad)
       .execute();
-  console.log("Products preloaded");
+    console.log("Products preloaded successfully");
+  } else {
+    console.log("Products already preloaded");
+  }
 };
+
+console.log(productsToPreLoad);
